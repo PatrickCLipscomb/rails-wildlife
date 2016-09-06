@@ -1,0 +1,25 @@
+<h1>Animals</h1>
+
+<ul>
+  <% @animals.each do |animal| %>
+  <li><%= link_to animal.name, animal_path(animal) %></li>
+  <% end %>
+</ul>
+
+<hr>
+
+<%= link_to "New Animal", new_animal_path %>
+
+<hr>
+
+<h1>Regions</h1>
+
+<ul>
+  <% @regions.each do |region| %>
+  <li><%= link_to region.name, region_path(region) %></li>
+  <% end %>
+</ul>
+
+<hr>
+
+<%= link_to "New Region", new_region_path %>

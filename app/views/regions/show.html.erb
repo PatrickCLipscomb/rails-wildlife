@@ -1,0 +1,26 @@
+<h1><%= @region.name %></h1>
+
+<% if @region.sightings.any? %>
+  <h4>Here are the sightings for this region:</h4>
+
+  <ul>
+    <% @region.sightings.each do |sighting| %>
+      <li>
+        <%= sighting.name %> (<%= sighting.latitude %>, <%= sighting.longitude %>) |
+        <%= link_to "Edit", edit_animal_sighting_path(sighting.animal, sighting) %> |
+        <%= link_to "Delete", animal_sighting_path(sighting.animal, sighting),
+        :data => {:confirm => "Are you sure?",
+          :method => "delete"} %>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>There are no sightings yet!</p>
+<% end %>
+
+<p><%= link_to "Edit", edit_region_path(@region) %></p>
+<p><%= link_to "Delete", region_path(@region), :data => {:confirm => "You sure?", :method => "delete"} %></p>
+
+<hr>
+
+<p><%= link_to "Return to animals", animals_path %></p>
