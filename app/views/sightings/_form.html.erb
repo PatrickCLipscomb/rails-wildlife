@@ -1,12 +1,12 @@
 <%= render('layouts/errors', :object => @sighting) %>
 
-<%= form_for [@animal, @sighting, @regions] do |f| %>
+<%= form_for [@animal, @sighting] do |f| %>
   <%= f.label :name %>
   <%= f.text_field :name %>
   <%= f.label :latitude %>
   <%= f.number_field :latitude %>
   <%= f.label :longitude %>
   <%= f.number_field :longitude %>
-  <%= collection_select @regions %>
+  <%= f.collection_select(:region_id, Region.all, :id, :name) %>
   <p><%= f.submit %></p>
 <% end %>

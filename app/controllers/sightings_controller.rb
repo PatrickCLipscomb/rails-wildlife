@@ -1,6 +1,5 @@
 class SightingsController < ApplicationController
   def create
-    @regions = Region.all
     @animal = Animal.find(params[:animal_id])
     @sighting = @animal.sightings.new(sighting_params)
     if @sighting.save
@@ -10,18 +9,15 @@ class SightingsController < ApplicationController
     end
   end
   def new
-    @regions = Region.all
     @animal = Animal.find(params[:animal_id])
     @sighting = @animal.sightings.new
   end
   def edit
-    @regions = Region.all
     @animal = Animal.find(params[:animal_id])
     @sighting = Sighting.find(params[:id])
     render :edit
   end
   def update
-    @regions = Region.all
     @animal = Animal.find(params[:animal_id])
     @sighting = Sighting.find(params[:id])
     if @sighting.update(sighting_params)
@@ -38,6 +34,6 @@ class SightingsController < ApplicationController
 
   private
   def sighting_params
-    params.require(:sighting).permit(:name, :latitude, :longitude)
+    params.require(:sighting).permit(:name, :latitude, :longitude, :region_id)
   end
 end
